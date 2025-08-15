@@ -6,8 +6,11 @@ def test_sum_of_the_parts_should_be_equal_to_value() -> None:
 
 
 def test_should_split_into_equal_parts_when_value_divisible_by_parts() -> None:
-    array = split_integer(20, 5)
-    assert array[0] == array[1] == array[2] == array[3]
+    assert (
+        split_integer(15, 5)[0]
+        == split_integer(15, 5)[1]
+        == split_integer(15, 5)[2]
+    )
 
 
 def test_should_return_part_equals_to_value_when_split_into_one_part() -> None:
@@ -15,8 +18,16 @@ def test_should_return_part_equals_to_value_when_split_into_one_part() -> None:
 
 
 def test_parts_should_be_sorted_when_they_are_not_equal() -> None:
-    assert split_integer(31, 7) == sorted(split_integer(31, 7))
+    assert split_integer(32, 6) == sorted(split_integer(32, 6))
 
 
 def test_should_add_zeros_when_value_is_less_than_number_of_parts() -> None:
     assert 0 in split_integer(3, 5)
+
+
+def test_the_difference_between_parts_should_be_no_more_than_one() -> None:
+    assert max(split_integer(33, 6)) - min(split_integer(33, 6)) <= 1
+
+
+def test_len_of_array_should_be_equal_to_number_of_parts() -> None:
+    assert len(split_integer(31, 7)) == 7
